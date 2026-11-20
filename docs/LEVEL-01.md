@@ -48,14 +48,14 @@ Use the template in PROGRESS.md.
 Answer in your own words:
 1. What is the difference between a workflow, a job, and a step?
     a workflow is triggered by an event 
-    a job is work triggered in sequence in a workflow
-    a step is an action inside the job
+    a jobs are actions triggered by the workflow starting and run in parallel by default but can depend on each other to run in sequence
+    a step is an action inside the job that runs sequentially
 2. Why does a fresh runner need checkout and Go setup?
     github runs the tests in a remote server and the server needs to download from your code base before any work is done
 3. What told GitHub the test step failed?
-    an error will trigger github
+    non 0 exit code will create an alert
 4. Why was the build step skipped on the failing run?
-    because if one step fails the steps after will fail
+    because if one step fails the steps after will be skipped
 ## Review gate
 
 I will return PASS, REVISE, or BLOCKED, with concrete evidence and next actions.
