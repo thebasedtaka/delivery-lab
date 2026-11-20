@@ -12,7 +12,7 @@ import (
 func Greeting(name string) string {
 	name = strings.TrimSpace(name)
 	if name == "" {
-		name = "stranger"
+		name = "friend"
 	}
 	return fmt.Sprintf("Hello, %s!", name)
 }
