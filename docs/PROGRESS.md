@@ -3,7 +3,7 @@
 Learner: Micah Philpotts
 Project: delivery-lab
 Current level: 02
-Status: READY — Level 01 passed; Level 02 unlocked
+Status: REVISE — Level 02 in progress
 Repository URL: https://github.com/thebasedtaka/delivery-lab
 Approved levels: 01
 
@@ -50,4 +50,14 @@ explicit rather than dependent on chat memory.
 
 Level 02 is unlocked at [LEVEL-02.md](LEVEL-02.md). It introduces
 formatting and vet quality gates, dependent jobs, and required-check research.
-Level 02 has not yet been reviewed or passed.
+Level 02 has been reviewed and needs revision; it has not passed.
+
+## Level 02 review — November 20, 2026 — REVISE
+
+Reviewed workflow at `d803b3f874c3270b96a143249e7b9bf4c909e51e` and runs [#20](https://github.com/thebasedtaka/delivery-lab/actions/runs/44848484365) and [#21](https://github.com/thebasedtaka/delivery-lab/actions/runs/44848656747).
+
+- Three jobs are correctly separated: quality and test run independently; build needs both. Each checks out code, sets Go 1.24, and uses contents: read.
+- Run #20: formatting step failed, test passed, build skipped. Workflow used `go fmt -l ./...`, an invalid invocation; this is not evidence of rejecting misformatted source.
+- Run #21: all three jobs passed. Formatting step now uses `go fmt ./...`, which rewrites files rather than rejecting formatting differences. Vet remains present and passed.
+- Next: use a non-mutating formatting check and explicitly fail when files need formatting; demonstrate a formatting-only failure and repair.
+- The three-job layout clarified in chat is authoritative over the older two-job layout in LEVEL-02.md. Do not require restructuring back to two jobs.
