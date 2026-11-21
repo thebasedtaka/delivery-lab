@@ -65,3 +65,9 @@ Reviewed workflow at `d803b3f874c3270b96a143249e7b9bf4c909e51e` and runs [#20](h
 ### Level 02 follow-up — REVISE
 
 [Run #24](https://github.com/thebasedtaka/delivery-lab/actions/runs/44850007097), commit `9b2d87afcd22c1c68e22123b11a12835d3c0fc28`: quality, test, and build passed. Command corrected to `gofmt -l .`; it does not rewrite files. The step still lacks a shell condition to exit nonzero when the output lists files. Next: add that condition, then demonstrate formatting-only failure and repair. Three-job structure and vet remain correct.
+
+### Level 02 formatting implementation review — REVISE pending drill
+
+Workflow at `cf0c1a763b07e7140c516c0f7eb11363de299c89` now correctly captures `gofmt -l .`, checks for nonempty output, prints filenames, and exits 1 without rewriting source. Vet and the independent quality/test jobs with build depending on both remain correct.
+
+[Run #26](https://github.com/thebasedtaka/delivery-lab/actions/runs/44851834072) passed all jobs. [Run #27](https://github.com/thebasedtaka/delivery-lab/actions/runs/44851844815) was completed, conclusion success, at review time. Next evidence needed: deliberately misformat a Go file without changing behavior; verify formatting fails, test passes, and build is skipped; restore formatting and show all jobs passing. Earlier invalid-command failures do not establish this behavior. Level 02 is not yet passed.
