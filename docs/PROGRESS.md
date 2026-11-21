@@ -71,3 +71,11 @@ Reviewed workflow at `d803b3f874c3270b96a143249e7b9bf4c909e51e` and runs [#20](h
 Workflow at `cf0c1a763b07e7140c516c0f7eb11363de299c89` now correctly captures `gofmt -l .`, checks for nonempty output, prints filenames, and exits 1 without rewriting source. Vet and the independent quality/test jobs with build depending on both remain correct.
 
 [Run #26](https://github.com/thebasedtaka/delivery-lab/actions/runs/44851834072) passed all jobs. [Run #27](https://github.com/thebasedtaka/delivery-lab/actions/runs/44851844815) was completed, conclusion success, at review time. Next evidence needed: deliberately misformat a Go file without changing behavior; verify formatting fails, test passes, and build is skipped; restore formatting and show all jobs passing. Earlier invalid-command failures do not establish this behavior. Level 02 is not yet passed.
+
+### Level 02 formatting drill — PASS
+
+Verified workflow YAML and source diffs at the submitted commits:
+- [Run #29](https://github.com/thebasedtaka/delivery-lab/actions/runs/44852394376), `ed5b7e2bc21b15e0b2a6140c05906937f617a7f8`: handler.go contains extra spacing without a behavior change. Formatting step failed, tests passed, and build was skipped. Vet was skipped after the formatting failure.
+- [Run #30](https://github.com/thebasedtaka/delivery-lab/actions/runs/44852565813), `4071b034aaa5726cc0d8547b5210f95e2e48128d`: only the spacing was repaired; quality, test, and build all passed.
+
+Formatting gate and failure/recovery drill are accepted; do not repeat them. This is a component PASS, not yet a full Level 02 PASS. Remaining level review items from the brief: vet-failure evidence, merge-protection investigation, and review answers.
