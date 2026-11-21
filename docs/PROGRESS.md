@@ -61,3 +61,7 @@ Reviewed workflow at `d803b3f874c3270b96a143249e7b9bf4c909e51e` and runs [#20](h
 - Run #21: all three jobs passed. Formatting step now uses `go fmt ./...`, which rewrites files rather than rejecting formatting differences. Vet remains present and passed.
 - Next: use a non-mutating formatting check and explicitly fail when files need formatting; demonstrate a formatting-only failure and repair.
 - The three-job layout clarified in chat is authoritative over the older two-job layout in LEVEL-02.md. Do not require restructuring back to two jobs.
+
+### Level 02 follow-up — REVISE
+
+[Run #24](https://github.com/thebasedtaka/delivery-lab/actions/runs/44850007097), commit `9b2d87afcd22c1c68e22123b11a12835d3c0fc28`: quality, test, and build passed. Command corrected to `gofmt -l .`; it does not rewrite files. The step still lacks a shell condition to exit nonzero when the output lists files. Next: add that condition, then demonstrate formatting-only failure and repair. Three-job structure and vet remain correct.
