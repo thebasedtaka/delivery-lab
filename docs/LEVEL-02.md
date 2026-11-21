@@ -1,6 +1,6 @@
 # Level 02 — Quality gates and dependent jobs
 
-**Status:** Prepared — begins after Level 01 review and PASS  
+**Status:** PASS — reviewed November 20, 2026  
 **Estimated effort:** 60–120 minutes  
 **Cloud spend:** None
 
@@ -18,12 +18,12 @@ Extend the existing `.github/workflows/go.yml` workflow instead of creating a
 duplicate pipeline. Keep the existing triggers for pushes to `main` and pull
 requests targeting `main`.
 
-Introduce **at least two separate jobs**:
+Introduce **three separate jobs**:
 
 1. **Quality gate:** Verify Go formatting without modifying files and run
    static analysis with `go vet ./...`.
-2. **Test and build:** Run `go test -v ./...` and `go build ./...`, but **only
-   after** the quality job succeeds.
+2. **Test:** Run `go test -v ./...` independently of quality.
+3. **Build:** Run `go build ./...` only after both quality and test succeed.
 
 Name jobs and steps clearly. Explicitly install/select a Go version compatible
 with `go.mod` wherever you run Go commands. Remember that GitHub-hosted jobs
@@ -39,12 +39,12 @@ AWS, Terraform, external dependencies, secrets, or deployment are required.
       status **without rewriting source files in CI**.
 - [ ] The quality job runs `go vet ./...` and fails if vet reports an issue.
 - [ ] Tests and build execute in a different job from the quality checks.
-- [ ] An explicit job dependency prevents the test/build job from starting until
-      the quality job succeeds.
+- [ ] An explicit job dependency prevents the build job from starting until
+      both quality and test succeed.
 - [ ] If quality fails, the dependent job is visibly skipped.
 - [ ] Tests and build still fail when their commands fail.
-- [ ] Neither job requires write access or repository secrets.
-- [ ] A repaired commit makes both jobs pass, with the Go API unchanged.
+- [ ] No job requires write access or repository secrets.
+- [ ] A repaired commit makes all three jobs pass, with the Go API unchanged.
 - [ ] Investigate branch protection or rulesets. If required status checks are
       available for this repository, configure them for merges to `main`.
       If unavailable, document the limitation and explain the difference
@@ -58,7 +58,7 @@ AWS, Terraform, external dependencies, secrets, or deployment are required.
 2. On a feature branch, deliberately misformat one tracked Go file without
    changing its behaviour.
 3. Push the commit and capture the formatting failure.
-4. Confirm the dependent test/build job was skipped.
+4. Confirm the dependent build job was skipped.
 5. Restore formatting, push a new commit, and capture the successful run.
 
 ### Drill B — Static analysis
@@ -118,3 +118,7 @@ Ask for **Hint 1** (concept), **Hint 2** (documentation/keywords), or **Hint 3**
 - [Protected branches](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches)
 - [go vet](https://pkg.go.dev/cmd/vet)
 - [gofmt](https://pkg.go.dev/cmd/gofmt)
+
+## Final review — PASS
+
+All implementation, drill, protection configuration, and concept review requirements accepted; see PROGRESS.md for evidence. Original learner answers above are preserved. Reviewer clarifications: prerequisite jobs must succeed before the dependent build runs; Go setup selects the toolchain on each runner; branch protection blocks noncompliant merges rather than all manual merges. No additional Level 02 drills required.
