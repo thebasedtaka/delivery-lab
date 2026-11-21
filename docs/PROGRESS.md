@@ -79,3 +79,9 @@ Verified workflow YAML and source diffs at the submitted commits:
 - [Run #30](https://github.com/thebasedtaka/delivery-lab/actions/runs/44852565813), `4071b034aaa5726cc0d8547b5210f95e2e48128d`: only the spacing was repaired; quality, test, and build all passed.
 
 Formatting gate and failure/recovery drill are accepted; do not repeat them. This is a component PASS, not yet a full Level 02 PASS. Remaining level review items from the brief: vet-failure evidence, merge-protection investigation, and review answers.
+
+### Level 02 vet and protection review — REVISE
+
+[Run #33](https://github.com/thebasedtaka/delivery-lab/actions/runs/44853965671), commit `43fda718e690c131a8420d95333663d9e6a8a9d0`, passed quality (including vet), test, and build. Its diff repairs `t.Fatalf` from `%s` to `%d` for integer `rec.Code`. No Actions runs were returned for its parent `d91eb6b7a5d5ee62f437ca8354242aad9779e80b`, so the intentional vet failure has not been verified in CI.
+
+Repository branch metadata reports main protected=false, required status check enforcement off, and no required contexts; rulesets collection is empty. Full protection details endpoint is inaccessible to the connector (403); this is a connector limitation, not evidence that the user's account cannot configure protection. Formatting drill remains accepted. Remaining: actual vet failure/skipped build evidence, merge protection setup or documented user-facing limitation, and review answers.
