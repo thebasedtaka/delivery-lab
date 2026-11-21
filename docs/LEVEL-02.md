@@ -88,12 +88,18 @@ Use the submission format in [PROGRESS.md](PROGRESS.md).
 
 1. What is the difference between steps executing sequentially and two jobs
    connected by an explicit dependency?
+   the latter will only run if the dependent job has ran successfully
 2. Why does each job need its own checkout and Go setup?
+   the jobs run on different virtual machines so each of the machines need a copy of their own code
 3. Why should CI **check** formatting rather than automatically fix it?
+   if its automatically fixed the client side code never fixes the issues and can cause drift
 4. What kind of problem does `go vet` catch that ordinary unit tests might not?
-5. What happens to dependent jobs when a prerequisite fails?
+   go vet catches mistakes such as variables misused that a compiler would still mark as non problematic
+5. What happen to dependent jobs when a prerequisite fails?
+   the jobs do not execute
 6. Why doesn't a passing CI run necessarily stop someone from merging a failing
    PR? Which repository setting changes that?
+   branch protection prevents manual merges, without that it is up to the discression of the user
 
 ## Review gate
 
