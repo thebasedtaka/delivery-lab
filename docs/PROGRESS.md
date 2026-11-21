@@ -2,10 +2,10 @@
 
 Learner: Micah Philpotts
 Project: delivery-lab
-Current level: 02
+Current level: 03
 Status: READY — Level 01 passed; Level 02 unlocked
 Repository URL: https://github.com/thebasedtaka/delivery-lab
-Approved levels: 01
+Approved levels: 01, 02
 
 ## Submission template
 
@@ -51,3 +51,13 @@ explicit rather than dependent on chat memory.
 Level 02 is unlocked at [LEVEL-02.md](LEVEL-02.md). It introduces
 formatting and vet quality gates, dependent jobs, and required-check research.
 Level 02 has not yet been reviewed or passed.
+
+### Level 02 — PASS (November 20, 2026)
+
+Formatting drill accepted in runs #29/#30 above. Vet drill verified: [#35](https://github.com/thebasedtaka/delivery-lab/actions/runs/44854527668) passed formatting, failed vet on a printf verb/type mismatch, failed test, and skipped build; [#36](https://github.com/thebasedtaka/delivery-lab/actions/runs/44854569570) repaired the verb and passed all jobs. [#37](https://github.com/thebasedtaka/delivery-lab/actions/runs/44854647885) also passed.
+
+[Basic Rule](https://github.com/thebasedtaka/delivery-lab/rules/27777735) verified active, targeting only refs/heads/main, requiring PRs and quality/test/build checks, with zero required approvals and no bypass actors. Configuration evidence accepted; no additional failure drill is required.
+
+Learner's six review answers in LEVEL-02.md accepted. Clarifications: a dependent job waits for its prerequisites to succeed; each runner needs both source checkout and the selected Go toolchain. Protection blocks merges that violate its requirements, not all manual merges. CI formatting checks ensure the committed source itself satisfies formatting requirements.
+
+Level 02 complete. Level 03 unlocked, assignment pending. No repeat Level 02 drills required.
