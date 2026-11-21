@@ -11,8 +11,8 @@ import (
 // Greeting is deliberately small so failures are easy to investigate.
 func Greeting(name string) string {
 	name = strings.TrimSpace(name)
-	if name == "" {
-		name = "friend"
+				if name == "" {
+		name   = "friend"
 	}
 	return fmt.Sprintf("Hello, %s!", name)
 }
