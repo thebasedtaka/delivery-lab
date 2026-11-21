@@ -36,7 +36,7 @@ func TestEndpoints(t *testing.T) {
 			rec := httptest.NewRecorder()
 			NewHandler("test-version").ServeHTTP(rec, httptest.NewRequest(http.MethodGet, tc.path, nil))
 			if rec.Code != http.StatusOK {
-				t.Fatalf("status = %d; want 200", rec.Code)
+				t.Fatalf("status = %s; want 200", rec.Code)
 			}
 			if got := rec.Header().Get("Content-Type"); got != "application/json" {
 				t.Fatalf("Content-Type = %q; want application/json", got)
